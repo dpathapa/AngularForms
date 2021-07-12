@@ -1,0 +1,29 @@
+<form #feedbackForm="ngForm" (ngSubmit)="onSubmit(feedbackForm)" novalidate>
+  <fieldset ngModelGroup="name">
+    <div class="form-group">
+      <label for="name">Name: </label>
+      <input type="text" name="name" class="form-control" ngModel>
+    </div>
+    <div class="form-group">
+      <label for="companyName">Company Name: </label>
+      <input type="text" name="companyName" class="form-control" ngModel required>
+    </div>
+    <div class="form-group">
+      <label for="jobTitle">Job Title: </label>
+      <input type="text" name="jobTitle" class="form-control" ngModel required>
+    </div>
+    <div class="form-group">
+      <label for="years">Years: </label>
+      <input type="text" name="years" class="form-control" placeholder="years in a current role" ngModel 
+      required min="1" max="50">
+    </div>
+    <div class="form-group">
+      <label for="comments">Comments: </label>
+      <textarea class="form-control" name="comments" placeholder="What do you like about marketing corp"
+        ngModel required></textarea>
+    </div>
+    <div class="form-group">
+      <input type="submit" value="Send">
+    </div>
+  </fieldset>
+</form>
