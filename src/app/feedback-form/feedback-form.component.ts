@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { Component} from '@angular/core';
+import { FormGroup} from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
@@ -8,11 +8,13 @@ import { Router } from '@angular/router';
   styleUrls: ['./feedback-form.component.css']
 })
 export class FeedbackFormComponent {
+  feedbackForm: FormGroup;
 
   constructor(private router: Router) { }
 
-  onSubmit(form: NgForm) {
-    // on submit button click redirect to thank you page.
+  onSubmit(val) {
+    // on submit redirects to thank you page.
+    console.log(val);
     this.router.navigate(['/thankyou']);
   }
 

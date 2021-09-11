@@ -1,29 +1,50 @@
-<form #feedbackForm="ngForm" (ngSubmit)="onSubmit(feedbackForm)" novalidate>
-  <fieldset ngModelGroup="name">
-    <div class="form-group">
-      <label for="name">Name: </label>
-      <input type="text" name="name" class="form-control" ngModel>
-    </div>
-    <div class="form-group">
-      <label for="companyName">Company Name: </label>
-      <input type="text" name="companyName" class="form-control" ngModel required>
-    </div>
-    <div class="form-group">
-      <label for="jobTitle">Job Title: </label>
-      <input type="text" name="jobTitle" class="form-control" ngModel required>
-    </div>
-    <div class="form-group">
-      <label for="years">Years: </label>
-      <input type="text" name="years" class="form-control" placeholder="years in a current role" ngModel 
-      required min="1" max="50">
-    </div>
-    <div class="form-group">
-      <label for="comments">Comments: </label>
-      <textarea class="form-control" name="comments" placeholder="What do you like about marketing corp"
-        ngModel required></textarea>
-    </div>
-    <div class="form-group">
-      <input type="submit" value="Send">
-    </div>
-  </fieldset>
-</form>
+<div class="container">
+  <form #feedbackForm="ngForm" (ngSubmit)="onSubmit(feedbackForm.value); feedbackForm.reset();">
+    <fieldset ngModelGroup="name">
+      <div class="form-group">
+        <label for="name">Name: </label>
+        <input #name="ngModel" type="text" name="name" class="form-control" placeholder="must contain 5 or more letters - numbers not allowed." required pattern="[a-zA-z]*" minlength="5" ngModel>
+        <span class="error" *ngIf="(name.touched || feedbackForm.submitted) && name.invalid">
+          Name must have 5 or more letters and not contain a number.
+        </span>
+      </div>
+      <div class="form-group">
+        <label for="companyName">Company Name: </label>
+        <input #companyName="ngModel" type="text" name="companyName" placeholder="your company name." class="form-control" required ngModel >
+        <span class="error" *ngIf="(companyName.touched || feedbackForm.submitted) && companyName.invalid"> This is required field.</span>
+      </div>
+      <div class="form-group">
+        <label for="jobTitle">Job Title: </label>
+        <input #jobTitle="ngModel" type="text" name="jobTitle" placeholder="your current role title." class="form-control" ngModel required>
+        <span class="error" *ngIf="(jobTitle.touched || feedbackForm.submitted) && jobTitle.invalid">
+          This is required field.
+        </span>
+      </div>
+      <div class="form-group">
+        <label for="email">Email: </label>
+        <input #email="ngModel" type="email" name="email" class="form-control" placeholder="abc@mail.com" email required ngModel>
+        <span class="error" *ngIf="(email.touched || feedbackForm.submitted) && email.invalid">
+          Please enter a valid email address.
+        </span>
+      </div>
+      <div class="form-group">
+        <label for="years">Years: </label>
+        <input #years="ngModel" type="text" name="years" class="form-control" placeholder="no of years in your current role." required
+          pattern="^([1-4][1-9]?|)$" ngModel>
+        <span class="error" *ngIf="(years.touched || feedbackForm.submitted) && years.invalid">
+          Years should be greater than 0 or less than 50.
+        </span>
+        </div>
+      <div class="form-group">
+        <label for="comments">Comments: </label>
+        <textarea #comments="ngModel" class="form-control" name="comments" placeholder="what do you feel about our services."
+          required ngModel>
+              </textarea>
+        <span class="error" *ngIf="(comments.touched || feedbackForm.submitted) && comments.invalid"> This is required field</span>
+      </div>
+      <div class="form-group">
+        <input type="submit" value="Send" [disabled]="feedbackForm.invalid">
+      </div>
+    </fieldset>
+  </form>
+</div>
