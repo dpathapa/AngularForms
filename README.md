@@ -1,4 +1,6 @@
-# Basic Angular Form
+# Template Driven Form in Angular.
+
+An example of angular template driven form for taking feedbacks for the company services.
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.2.3.
 
